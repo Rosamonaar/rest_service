@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class Controller {
 
     @GetMapping("/")
-    public String getResponse(@RequestBody String monthNum) {
+    public String getResponse(@RequestParam("month") String monthNum) {
         return MonthSelector.getMonth(monthNum);
     }
 
