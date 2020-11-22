@@ -25,18 +25,16 @@ jobs:
         id: global_env
         run: |
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/fardreamer/${GITHUB_REPOSITORY#*/}"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::fardreamer/${GITHUB_REPOSITORY#*/}"
 
 #     Build Docker image:
       - name: Build and tag image
         run: |
-          sudo docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" .
+          sudo docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" .
 
       - name: Docker login
-        run: docker login docker.pkg.github.com -u fardreamer -p ${{secrets.DOCKER_SECRET}}
+        run: docker login -u fardreamer -p ${{secrets.DOCKER_SECRET}}
 
 #     Publish image to github package repository:
       - name: Publish image
-        env:
-          IMAGE_NAME: $GITHUB_REPOSITORY
-        run: docker push "docker.pkg.github.com/$GITHUB_REPOSITORY/${{ steps.global_env.outputs.IMAGE_NAME }}"
+        run: docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
