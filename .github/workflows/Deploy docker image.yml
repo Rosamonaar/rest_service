@@ -24,8 +24,9 @@ jobs:
       - name: set global env
         id: global_env
         run: |
+          echo "::set-output name=USERNAME::fardreamer"
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
-          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/fardreamer/${GITHUB_REPOSITORY#*/}"
+          echo "::set-output name=DOCKERHUB_IMAGE_NAME::docker.pkg.github.com/${{USERNAME}}/${GITHUB_REPOSITORY#*/}"
 
 #     Build Docker image:
       - name: Build and tag image
@@ -33,7 +34,7 @@ jobs:
           sudo docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_SHA::8}" .
 
       - name: Docker login
-        run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{secrets.GITHUB_TOKEN}}
+        run: docker login docker.pkg.github.com -u ${{USERNAME}} -p ${{secrets.DOCKER_SECRET}}
 
 #     Publish image to github package repository:
       - name: Publish image
