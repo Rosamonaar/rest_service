@@ -40,8 +40,7 @@ jobs:
 #     Build Docker image:
       - name: Build and tag image
         run: |
-          docker pull ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest || true
-          docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}" --cache-from ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
+          docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}"
 
 #     Publish image to github package repository:
       - name: Publish image
