@@ -27,14 +27,15 @@ jobs:
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::fardreamer/${GITHUB_REPOSITORY#*/}"
 
+#     Docker login
+      - name: Docker login
+        run: docker login -u fardreamer -p ${{secrets.DOCKER_SECRET}}
+
 #     Build Docker image:
       - name: Build and tag image
         run: |
           docker pull ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
           docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}"
-
-      - name: Docker login
-        run: docker login -u fardreamer -p ${{secrets.DOCKER_SECRET}}
 
 #     Publish image to github package repository:
       - name: Publish image
