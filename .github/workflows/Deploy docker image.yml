@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::fardreamer/${GITHUB_REPOSITORY#*/}"
+          export
 
 #     Build Docker image:
       - name: Build and tag image
