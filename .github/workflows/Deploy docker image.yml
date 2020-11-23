@@ -26,12 +26,11 @@ jobs:
         run: |
           echo "::set-output name=IMAGE_NAME::${GITHUB_REPOSITORY#*/}"
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::fardreamer/${GITHUB_REPOSITORY#*/}"
-          export
 
 #     Build Docker image:
       - name: Build and tag image
         run: |
-          sudo docker build -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" .
+          sudo docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:$GITHUB_RUN_ID"
 
       - name: Docker login
         run: docker login -u fardreamer -p ${{secrets.DOCKER_SECRET}}
