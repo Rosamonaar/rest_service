@@ -8,7 +8,7 @@ on:
 jobs:
 
   build_docker_image:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
 
 #     Build JAR:
@@ -17,6 +17,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
       - name: Maven Package
         run: mvn -B clean compile package -DskipTests
 
