@@ -30,11 +30,13 @@ jobs:
 #     Build Docker image:
       - name: Build and tag image
         run: |
-          sudo docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:$GITHUB_RUN_ID"
+          sudo docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}"
 
       - name: Docker login
         run: docker login -u fardreamer -p ${{secrets.DOCKER_SECRET}}
 
 #     Publish image to github package repository:
       - name: Publish image
-        run: docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
+        run: |
+          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
+          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
