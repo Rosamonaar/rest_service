@@ -35,7 +35,7 @@ jobs:
 
 #     Docker login
       - name: Docker login
-        run: echo ${{secrets.DOCKER_SECRET}} | docker login -u fardreamer -p-stdin
+        run: echo ${{secrets.DOCKER_SECRET}} | docker login -u fardreamer --password-stdin
 
 #     Build Docker image:
       - name: Build and tag image
