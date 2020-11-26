@@ -50,7 +50,7 @@ jobs:
 
 #     Set Kubernetes context
       - name: Set Kubernetes context
-      - uses: azure/k8s-set-context@v1
+        uses: azure/k8s-set-context@v1
         with:
           method    : service-account
           k8s-url   : https://fortizar-dns-3dbee7e6.hcp.germanywestcentral.azmk8s.io:443
