@@ -55,7 +55,7 @@ jobs:
           method    : service-account
           k8s-url   : https://fortizar-dns-3dbee7e6.hcp.germanywestcentral.azmk8s.io:443
           k8s-secret: ${{secrets.KUBERNETES_AZURE_SECRET}}
-       id: setcontext
+        id: setcontext
 
 #     Create image pull secret for Docker Hub
       - name: Set imagePullSecret
