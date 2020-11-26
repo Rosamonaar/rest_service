@@ -52,9 +52,8 @@ jobs:
       - name: Set Kubernetes context
         uses: azure/k8s-set-context@v1
         with:
-          method    : service-account
-          k8s-url   : https://fortizar-dns-3dbee7e6.hcp.germanywestcentral.azmk8s.io:443
-          k8s-secret: ${{secrets.KUBERNETES_AZURE_SECRET}}
+          method    : kubeconfig
+          kubeconfig: ${{secrets.KUBECONFIG}}
         id: setcontext
 
 #     Create image pull secret for Docker Hub
