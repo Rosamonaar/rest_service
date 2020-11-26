@@ -38,15 +38,15 @@ jobs:
         run: echo ${{secrets.DOCKER_SECRET}} | docker login -u fardreamer --password-stdin
 
 #     Build Docker image:
-      - name: Build and tag image
-        run: |
-          docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}"
+#      - name: Build and tag image
+#        run: |
+#          docker build . -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest" -t "${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}"
 
 #     Publish image to github package repository:
-      - name: Publish image
-        run: |
-          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
-          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
+#      - name: Publish image
+#        run: |
+#          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
+#          docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
 
 #     Set Kubernetes context
       - name: Set Kubernetes context
