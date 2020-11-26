@@ -63,5 +63,5 @@ jobs:
           container-registry-username: fardreamer
           container-registry-password: ${{secrets.DOCKER_SECRET}}
           secret-name                : 'docker-cr'
-          force                      : true 
+#          force                      : true 
         id: create-secret
