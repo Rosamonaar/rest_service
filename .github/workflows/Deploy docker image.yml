@@ -48,6 +48,15 @@ jobs:
           docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
           docker push ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
 
+#     Set Kubernetes context
+      - name: Set Kubernetes context
+      - uses: azure/k8s-set-context@v1
+        with:
+          method    : service-account
+          k8s-url   : https://fortizar-dns-3dbee7e6.hcp.germanywestcentral.azmk8s.io:443
+          k8s-secret: ${{secrets.KUBERNETES_AZURE_SECRET}}
+       id: setcontext
+
 #     Create image pull secret for Docker Hub
       - name: Set imagePullSecret
         uses: azure/k8s-create-secret@v1
