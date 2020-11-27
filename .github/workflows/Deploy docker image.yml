@@ -65,3 +65,12 @@ jobs:
           secret-name                : 'docker-cr'
 #          force                      : true 
         id: create-secret
+
+#      Deployment image to Azure
+       - name: Deployment image to Azure
+         uses: Azure/k8s-deploy@v1.3
+         with:
+           manifest        : manifest.yaml
+           images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
+           imagepullsecrets: docker-cr
+           kubectl-version: 'latest'
