@@ -71,10 +71,10 @@ jobs:
         id: create-secret
 
 #     Deployment image to Azure
-      - name: Deployment image to Azure
-        uses: Azure/k8s-deploy@v1.3
-        with:
-          manifests       : manifest.yaml
-#          images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
-          imagepullsecrets: docker-cr
-          force           : true
+#      - name: Deployment image to Azure
+#        uses: Azure/k8s-deploy@v1.3
+#        with:
+#          manifests       : manifest.yaml
+##          images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
+#          imagepullsecrets: docker-cr
+#          force           : true
