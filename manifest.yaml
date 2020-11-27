@@ -15,9 +15,10 @@ spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
-      - name : rest-service
-        image: fardreamer/rest_service:latest
-        ports:
+      - name           : rest-service
+        image          : fardreamer/rest_service:latest
+        imagePullPolicy: "Always"
+        ports          :
         - containerPort: 8080
           name         : rest-service
       imagePullSecrets:
