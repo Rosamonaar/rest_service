@@ -68,7 +68,7 @@ jobs:
 #          container-registry-password: ${{secrets.DOCKER_SECRET}}
 #          secret-name                : 'docker-cr'
 #          force                      : true 
-        id: create-secret
+#        id: create-secret
 
 #     Deployment image to Azure
 #      - name: Deployment image to Azure
