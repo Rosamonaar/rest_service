@@ -73,4 +73,5 @@ jobs:
           manifests       : manifest.yaml
           images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:latest
           imagepullsecrets: docker-cr
-          kubectl-version: 'latest'
+          kubectl-version : 'latest'
+          force           : true
