@@ -8,7 +8,7 @@ public class MonthSelector {
 
     private static String select(int num) {
         switch (num) {
-            case 1 : return "я-Н-В-А-Р-Ь";
+            case 1 : return "Я-Н-В-А-Р-Ь";
             case 2 : return "Ф-Е-В-Р-А-Л-Ь";
             case 3 : return "М-А-Р-Т";
             case 4 : return "А-П-Р-Е-Л-Ь";
