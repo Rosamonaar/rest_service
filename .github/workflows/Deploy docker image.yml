@@ -50,7 +50,7 @@ jobs:
           
 #     Sleep for 1 min
       - name: Sleep
-        run: sleep 1m 
+        run: sleep 10 
 
 #     Set Kubernetes context
       - name: Set Kubernetes context
@@ -75,6 +75,6 @@ jobs:
         uses: Azure/k8s-deploy@v1.3
         with:
           manifests       : manifest.yaml
-#          images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${GITHUB_RUN_ID}
+          images          : ${{ steps.global_env.outputs.DOCKERHUB_IMAGE_NAME }}:${{ GITHUB_RUN_ID }}
           imagepullsecrets: docker-cr
           kubectl-version : 'latest'
