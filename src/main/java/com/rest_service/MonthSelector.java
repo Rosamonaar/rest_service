@@ -20,6 +20,7 @@ public class MonthSelector {
             case 10 : return "О-К-Т-Я-Б-Р-Ь";
             case 11 : return "Н-О-Я-Б-Р-Ь";
             case 12 : return "д-Е-К-А-Б-Р-Ь";
+            case 13 : return "qwe";
             default: return "INCORRECT INPUT DATA";
         }
     }
